@@ -1,4 +1,5 @@
 def busca_binaria(lista, alvo):
+  # return busca_binaria_iterativa(lista, alvo)
   return busca_binaria_recursiva(lista, 0, len(lista), alvo)
 
 def busca_binaria_recursiva(lista, inicio, fim, alvo):
@@ -17,3 +18,21 @@ def busca_binaria_recursiva(lista, inicio, fim, alvo):
     return busca_binaria_recursiva(lista, inicio, meio, alvo)
   else:
     return busca_binaria_recursiva(lista, meio + 1, fim, alvo)
+  
+def busca_binaria_iterativa(lista, alvo):
+  inicio = 0
+  fim = len(lista) - 1
+  
+  while inicio <= fim:
+    meio = (inicio + fim) // 2
+    
+    if lista[meio] == alvo:
+      return meio
+    elif lista[meio] > alvo:
+      fim = meio - 1
+    else:
+      inicio = meio + 1
+  
+  # Sair do while significa que não possuímos mais um intervalo
+  # válido de buscas e, portanto, o elemento não foi encontrado.
+  return -1
